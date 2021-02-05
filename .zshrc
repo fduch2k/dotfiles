@@ -45,7 +45,7 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "zsh-users/zsh-completions",              defer:0
 zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
 zplug "zdharma/fast-syntax-highlighting",       defer:3, on:"zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zdharma/fast-syntax-highlighting"
 
 # Plugins from oh my zsh
 zplug "plugins/gitfast", from:oh-my-zsh
@@ -94,6 +94,7 @@ alias b="bookmark"
 alias bd="deletemark"
 alias j="jump"
 alias c="clear"
+alias b2z='python $HOME/.bash-to-zsh-history.py'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Findfile and find content
