@@ -51,6 +51,9 @@ zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zdharma/fast-syntax
 zplug "plugins/gitfast", from:oh-my-zsh
 zplug "plugins/git-it-on", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/github", from:oh-my-zsh
 
 # Enhanced cd
 zplug "b4b4r07/enhancd", use:enhancd.sh
@@ -68,10 +71,11 @@ zplug "supercrabtree/k"
 zplug "djui/alias-tips"
 
 # Docker completion
-zplug "felixr/docker-zsh-completion"
+# zplug "felixr/docker-zsh-completion"
 
-zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "rupa/z", use:z.sh
+zplug "mafredri/zsh-async", from:github
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
