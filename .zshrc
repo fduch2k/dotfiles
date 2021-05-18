@@ -64,6 +64,9 @@ zplug "jocelynmallon/zshmarks"
 # RipGrep
 zplug 'BurntSushi/ripgrep', from:gh-r, as:command, rename-to:"rg"
 
+# rmate
+zplug 'aurora/rmate', as:command, use:rmate
+
 # Enhanced dir list with git features
 zplug "supercrabtree/k"
 
