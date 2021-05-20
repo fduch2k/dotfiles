@@ -80,13 +80,13 @@ zplug "djui/alias-tips"
 zplug "rupa/z", use:z.sh
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn"
-zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat"
-zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd"
+zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn", use:\*x86_64\*
+zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:\*x86_64\*
+zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:\*x86_64\*
 if [[ `uname` == "Darwin" ]]; then
     zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*macos\*
 else
-    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*linux\*
+    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*x86_64\*linux\*
 fi
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
