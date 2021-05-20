@@ -86,7 +86,7 @@ zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:\*x86_64\*
 if [[ `uname` == "Darwin" ]]; then
     zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*macos\*
 else
-    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*x86_64\*linux\*
+    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*linux\*
 fi
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
