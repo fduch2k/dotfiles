@@ -54,6 +54,7 @@ zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/github", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh, as:plugin
 
 # Enhanced cd
 zplug "b4b4r07/enhancd", use:enhancd.sh
@@ -79,7 +80,14 @@ zplug "djui/alias-tips"
 zplug "rupa/z", use:z.sh
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-
+zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn"
+zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat"
+zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd"
+if [[ `uname` == "Darwin" ]]; then
+    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*macos\*
+else
+    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*linux\*
+fi
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
