@@ -86,8 +86,8 @@ zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*linux-
 zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*darwin*", if:"[[ $OSTYPE == *darwin* ]]"
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*linux-gnu*", if:"[[ $OSTYPE == *linux* ]]"
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*darwin*", if:"[[ $OSTYPE == *darwin* ]]"
-zplug "ogham/exa", as:command, from:gh-r, use:"*linux*", rename-to:exa, if:"[[ $OSTYPE == *linux* ]]"
-zplug "ogham/exa", as:command, from:gh-r, use:"*macos*", rename-to:exa, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "ogham/exa", as:command, from:gh-r, use:"*linux*x86_64*", rename-to:exa, if:"[[ $OSTYPE == *linux* ]]"
+zplug "ogham/exa", as:command, from:gh-r, use:"*macos*x86_64*", rename-to:exa, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
     
 # bind UP and DOWN arrow keys
