@@ -80,9 +80,14 @@ zplug "djui/alias-tips"
 zplug "rupa/z", use:z.sh
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn", use:"*x86_64*"
-zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*"
-zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*"
+zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn", use:"*x86_64*linux*" if:"[[ $OSTYPE == *linux* ]]"
+zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn", use:"*x86_64*apple*" if:"[[ $OSTYPE == *darwin* ]]"
+zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*linux-gnu*" if:"[[ $OSTYPE == *linux* ]]"
+zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*darwin*" if:"[[ $OSTYPE == *darwin* ]]"
+zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*linux-gnu*" if:"[[ $OSTYPE == *linux* ]]"
+zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*darwin*" if:"[[ $OSTYPE == *darwin* ]]"
+zplug "ogham/exa", as:command, from:gh-r, use:"*linux*", rename-to:exa if:"[[ $OSTYPE == *linux* ]]"
+zplug "ogham/exa", as:command, from:gh-r, use:"*macos*", rename-to:exa if:"[[ $OSTYPE == *darwin* ]]"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
     
 # bind UP and DOWN arrow keys
