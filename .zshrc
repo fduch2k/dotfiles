@@ -83,11 +83,8 @@ zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "vmchale/tin-summer", as:command, from:gh-r, rename-to:"sn", use:\*x86_64\*
 zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:\*x86_64\*
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:\*x86_64\*
-if [[ `uname` == "Darwin" ]]; then
-    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*macos\*
-else
-    zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:\*linux\*x86_64\*
-fi
+zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+    
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
