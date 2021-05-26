@@ -89,6 +89,9 @@ zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*darwin*"
 zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:"*linux*x86_64*", if:"[[ $OSTYPE == *linux* ]]"
 zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:"*macos*x86_64*", if:"[[ $OSTYPE == *darwin* ]]"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "b4b4r07/enhancd", use:"init.sh"
+zplug "b4b4r07/cli-finder", as:command, use:"bin/finder"
     
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
