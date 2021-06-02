@@ -86,11 +86,11 @@ zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*linux-
 zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*darwin*", if:"[[ $OSTYPE == *darwin* ]]"
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*linux-gnu*", if:"[[ $OSTYPE == *linux* ]]"
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*darwin*", if:"[[ $OSTYPE == *darwin* ]]"
-zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:"*linux*x86_64*", if:"[[ $OSTYPE == *linux* ]]"
-zplug "ogham/exa", as:command, from:gh-r, rename-to:exa, use:"*macos*x86_64*", if:"[[ $OSTYPE == *darwin* ]]"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+zplug "junegunn/fzf", use:"shell/*.zsh"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-    
+zplug "ptavares/zsh-exa"
+
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
