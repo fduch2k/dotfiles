@@ -33,7 +33,7 @@ source $ZPLUG_HOME/init.zsh
 # Zplug plugins
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
-#zplug "modules/tmux",       from:prezto
+# zplug "modules/tmux",       from:prezto
 #zplug "modules/history",    from:prezto
 #zplug "modules/utility",    from:prezto
 #zplug "modules/terminal",   from:prezto
@@ -44,16 +44,18 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 # zsh users
 zplug "zsh-users/zsh-completions",              defer:0
 zplug "zsh-users/zsh-autosuggestions",          defer:2, on:"zsh-users/zsh-completions"
-zplug "zdharma/fast-syntax-highlighting",       defer:3, on:"zsh-users/zsh-autosuggestions"
+zplug "zdharma-continuum/fast-syntax-highlighting",       defer:3, on:"zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search", defer:3, on:"zdharma/fast-syntax-highlighting"
 
 # Plugins from oh my zsh
 zplug "plugins/gitfast", from:oh-my-zsh
 zplug "plugins/git-it-on", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/vscode", from:oh-my-zsh
+zplug "plugins/zsh-interactive-cd", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
-zplug "plugins/github", from:oh-my-zsh
+# zplug "plugins/github", from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh, as:plugin
 
 # Enhanced cd
@@ -87,6 +89,7 @@ zplug "sharkdp/bat", as:command, from:gh-r, rename-to:"bat", use:"*x86_64*darwin
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*linux-gnu*", if:"[[ $OSTYPE == *linux* ]]"
 zplug "sharkdp/fd", as:command, from:gh-r, rename-to:"fd", use:"*x86_64*darwin*", if:"[[ $OSTYPE == *darwin* ]]"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+zplug "dandavison/delta", from:gh-r, as:command, rename-to:delta
 zplug "junegunn/fzf", use:"shell/*.zsh"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "ptavares/zsh-exa"
