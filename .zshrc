@@ -49,9 +49,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-export TONOSCLI_CONFIG=/home/ton/tonlabs-cli.conf.json
-export HASS_SERVER=http://192.168.17.205:8123
-export HASS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2ZjcxNTIzNGZmZTg0ZGM0ODI2YTM4ZDgyOGRmZWU2NiIsImlhdCI6MTY5ODY4Njk0NCwiZXhwIjoyMDE0MDQ2OTQ0fQ.OmHWqCMqQ5lKlzq-n4LZBvwDLSa3xEvZ4GwhTVUip5A
 
 WORDCHARS=${WORDCHARS/\/}
 
@@ -65,12 +62,14 @@ zmodload zsh/terminfo
 #zplug "modules/directory",  from"prezto"
 #zplug "modules/completion", from"prezto"
 
+# test -e "${HOME}/." && source
+
 # Install gir extras
-zinit lucid wait'0a' for \
+zi lucid wait'0a' for \
 as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX" tj/git-extras
 
 # Zplug plugins
-zi self-update
+# zi self-update
 
 # zsh users
 zi ice wait"0"
