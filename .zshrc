@@ -181,6 +181,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Findfile and find content
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
+function rgd() { rg --json -C 2 "$1" | delta }
 
 # Install plugins if there are plugins that have not been installed
 # if ! zplug check; then
