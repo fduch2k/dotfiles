@@ -158,6 +158,7 @@ zi light "arzzen/calc.plugin.zsh"
 
 zi ice wait"2"
 zi light "lukechilds/zsh-better-npm-completion"
+zi light lukechilds/zsh-nvm
 
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
