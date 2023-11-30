@@ -75,16 +75,16 @@ as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX
 
 # zsh users
 zi ice wait"0"
-zi load "zsh-users/zsh-completions"
+zi light "zsh-users/zsh-completions"
 
 zi ice wait"2"
-zi load "zsh-users/zsh-autosuggestions"
+zi light "zsh-users/zsh-autosuggestions"
 
 zi ice atinit"zicompinit; zicdreplay"
-zi load "zdharma-continuum/fast-syntax-highlighting"
+zi light "zdharma-continuum/fast-syntax-highlighting"
 
 zi ice wait"3"
-zi load "zsh-users/zsh-history-substring-search"
+zi light "zsh-users/zsh-history-substring-search"
 
 zi ice silent wait as"program" from"gh-r" pick"bat/bat" mv"bat* -> bat"
 zi light sharkdp/bat
@@ -95,12 +95,15 @@ zi light sharkdp/fd
 zi ice as"completion"
 zi snippet OMZP::fd/_fd
 
-
 # Plugins from oh my zsh
 zi ice atload"unalias grv"
 
 zi snippet OMZP::git
-zi snippet OMZP::vscode
+
+if command -v code >/dev/null 2>&1; then
+  zi snippet OMZP::vscode
+fi
+
 zi snippet OMZP::zsh-interactive-cd
 zi snippet OMZP::colored-man-pages
 zi snippet OMZL::key-bindings.zsh
@@ -114,7 +117,7 @@ zi snippet OMZP::docker-compose/_docker-compose
 zi light peterhurford/git-it-on.zsh
 
 # Enhanced cd
-# zi load "b4b4r07/enhancd", use:enhancd.sh
+# zi light "b4b4r07/enhancd", use:enhancd.sh
 
 
 # RipGrep
@@ -134,7 +137,7 @@ zi light rupa/z
 zi ice pick"async.zsh" src"pure.zsh"
 zi light sindresorhus/pure
 
-zi load ptavares/zsh-exa
+zi light ptavares/zsh-exa
 
 zi ice as"program" from"gh-r" pick"fzf" mv"fzf* -> fzf"
 zi light junegunn/fzf
@@ -165,6 +168,8 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT=' alias hint: '
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # User configuration
 export PATH="$HOME/.dotfiles/bin:$HOME/.bin:/usr/local/bin:$PATH"
@@ -184,7 +189,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Findfile and find content
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
-function rgd() { rg --json -C 2 "$1" | delta }
+function rgd() { rg --json -C 2 $* | delta }
 
 # Install plugins if there are plugins that have not been installed
 # if ! zplug check; then
