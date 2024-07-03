@@ -92,6 +92,12 @@ zi light sharkdp/bat
 zi ice silent wait as"program" from"gh-r" pick"fd/fd" mv"fd* -> fd"
 zi light sharkdp/fd
 
+zi ice silent wait as"program" from"gh-r" pick"duf/duf"
+zi light muesli/duf
+
+zi ice silent wait as"program" from"gh-r" pick"dust/dust" mv"dust* -> dust"
+zi light bootandy/dust
+
 zi ice as"completion"
 zi snippet OMZP::fd/_fd
 
@@ -137,7 +143,10 @@ zi light rupa/z
 zi ice pick"async.zsh" src"pure.zsh"
 zi light sindresorhus/pure
 
-zi light ptavares/zsh-exa
+if [[ $(uname) == "Linux" ]]; then
+  zi ice silent wait as"program" from"gh-r" pick"eza/eza"
+  zi light eza-community/eza
+fi
 
 zi ice as"program" from"gh-r" pick"fzf" mv"fzf* -> fzf"
 zi light junegunn/fzf
@@ -162,6 +171,16 @@ zi light "arzzen/calc.plugin.zsh"
 zi ice wait"2"
 zi light "lukechilds/zsh-better-npm-completion"
 zi light lukechilds/zsh-nvm
+
+zi for \
+    from'gh-r'  \
+    sbin'**/glow' \
+  charmbracelet/glow
+
+zi for \
+    from'gh-r'  \
+    sbin'**/fx* -> fx' \
+  @antonmedv/fx
 
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -214,3 +233,30 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+# Modern Unix commands
+# See https://github.com/ibraheemdev/modern-unix
+echo $+commands[eza]
+if (( $+commands[eza] )); then
+    alias ls='eza --color=auto --icons --group-directories-first'
+    alias l='ls -lhF'
+    alias la='ls -lhAF'
+    alias tree='ls --tree'
+elif (( $+commands[exa] )); then
+    alias ls='exa --color=auto --icons --group-directories-first'
+    alias la='ls -lahF'
+    alias tree='ls --tree'
+fi
+
+alias ll="ls -la"
+
+(( $+commands[bat] )) && alias cat='bat -p --wrap character'
+(( $+commands[fd] )) && alias find=fd
+(( $+commands[btm] )) && alias top=btm
+(( $+commands[rg] )) && alias grep=rg
+(( $+commands[tldr] )) && alias help=tldr
+(( $+commands[delta] )) && alias diff=delta
+(( $+commands[duf] )) && alias df=duf
+(( $+commands[dust] )) && alias du=dust
+(( $+commands[hyperfine] )) && alias benchmark=hyperfine
+(( $+commands[gping] )) && alias ping=gping
