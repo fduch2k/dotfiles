@@ -172,6 +172,9 @@ zi ice wait"2"
 zi light "lukechilds/zsh-better-npm-completion"
 zi light lukechilds/zsh-nvm
 
+zi ice as"program" from"gh-r" pick"orf/gping" mv"gping* -> gping"
+zi light orf/gping
+
 zi for \
     from'gh-r'  \
     sbin'**/glow' \
