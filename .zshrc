@@ -95,6 +95,9 @@ zi light sharkdp/fd
 zi ice silent wait as"program" from"gh-r" pick"duf/duf"
 zi light muesli/duf
 
+zi ice silent wait as"program" from"gh-r" mv"dua*/dua -> dua" pick"dua"
+zi light Byron/dua-cli
+
 zi ice silent wait as"program" from"gh-r" pick"dust/dust" mv"dust* -> dust"
 zi light bootandy/dust
 
@@ -175,15 +178,11 @@ zi light lukechilds/zsh-nvm
 zi ice as"program" from"gh-r" pick"orf/gping" mv"gping* -> gping"
 zi light orf/gping
 
-zi for \
-    from'gh-r'  \
-    sbin'**/glow' \
-  charmbracelet/glow
+zi ice wait"3" as"program" from"gh-r" lucid sbin"**/glow"
+zi light charmbracelet/glow
 
-zi for \
-    from'gh-r'  \
-    sbin'**/fx* -> fx' \
-  @antonmedv/fx
+zi ice wait"3" from"gh-r" lucid sbin"**/fx* -> fx"
+zi light @antonmedv/fx
 
 # bind UP and DOWN arrow keys
 bindkey "$terminfo[kcuu1]" history-substring-search-up
