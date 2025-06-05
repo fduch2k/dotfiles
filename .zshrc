@@ -102,7 +102,7 @@ zi ice silent wait as"program" from"gh-r" pick"dust/dust" mv"dust* -> dust"
 zi light bootandy/dust
 
 zi ice as"completion"
-zi snippet OMZP::fd/_fd
+zi snippet https://github.com/sharkdp/fd/blob/master/contrib/completion/_fd
 
 # Plugins from oh my zsh
 zi ice atload"unalias grv"
