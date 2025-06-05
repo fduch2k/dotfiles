@@ -168,9 +168,6 @@ zi light ClementTsang/bottom
 zi ice as"program" from"gh-r"
 zi light zellij-org/zellij
 
-zi ice wait"3"
-zi light "arzzen/calc.plugin.zsh"
-
 zi ice wait"2"
 zi light "lukechilds/zsh-better-npm-completion"
 zi light lukechilds/zsh-nvm
@@ -238,12 +235,12 @@ zinit light-mode for \
 
 # Modern Unix commands
 # See https://github.com/ibraheemdev/modern-unix
-echo $+commands[eza]
+# echo $+commands[eza]
 if (( $+commands[eza] )); then
-    alias ls='eza --color=auto --icons --group-directories-first'
-    alias l='ls -lhF'
-    alias la='ls -lhAF'
-    alias tree='ls --tree'
+    alias ls='eza --git --icons --group --color=auto --icons --group-directories-first'
+    alias l='eza -lhF --git --icons --group --color=auto --icons --group-directories-first'
+    alias la='eza -lhAF --git --icons --group --color=auto --icons --group-directories-first'
+    alias tree='eza --tree --git --icons --group --color=auto --icons --group-directories-first'
 elif (( $+commands[exa] )); then
     alias ls='exa --color=auto --icons --group-directories-first'
     alias la='ls -lahF'
@@ -262,3 +259,10 @@ alias ll="ls -la"
 (( $+commands[dust] )) && alias du=dust
 (( $+commands[hyperfine] )) && alias benchmark=hyperfine
 (( $+commands[gping] )) && alias ping=gping
+
+# Local customizations, e.g. theme, plugins, aliases, etc.
+[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/fduch/.lmstudio/bin"
+# End of LM Studio CLI section
