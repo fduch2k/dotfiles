@@ -80,7 +80,7 @@ zi light "zsh-users/zsh-completions"
 zi ice wait"2"
 zi light "zsh-users/zsh-autosuggestions"
 
-zi ice atinit"zicompinit; zicdreplay"
+zi ice atinit"autoload -Uz compinit; if [[ \$(date +'%j') != \$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then compinit; else compinit -C; fi; zicdreplay"
 zi light "zdharma-continuum/fast-syntax-highlighting"
 
 zi ice wait"3"
@@ -101,19 +101,25 @@ zi light Byron/dua-cli
 zi ice silent wait as"program" from"gh-r" pick"dust/dust" mv"dust* -> dust"
 zi light bootandy/dust
 
+zi ice silent wait as"program" from"gh-r" pick"curlie"
+zi light rs/curlie
+
 zi ice as"completion"
 zi snippet https://github.com/sharkdp/fd/blob/master/contrib/completion/_fd
 
 # Plugins from oh my zsh
-zi ice atload"unalias grv"
+zi ice wait"0" atload"unalias grv"
 
 zi snippet OMZP::git
 
 if command -v code >/dev/null 2>&1; then
+  zi ice wait"0"
   zi snippet OMZP::vscode
 fi
 
+zi ice wait"0"
 zi snippet OMZP::zsh-interactive-cd
+zi ice wait"0"
 zi snippet OMZP::colored-man-pages
 zi snippet OMZL::key-bindings.zsh
 
@@ -123,6 +129,7 @@ zi snippet OMZP::docker/completions/_docker
 zi ice as"completion"
 zi snippet OMZP::docker-compose/_docker-compose
 
+zi ice wait"0"
 zi light peterhurford/git-it-on.zsh
 
 # Enhanced cd
@@ -138,6 +145,7 @@ zi ice as"command" pick"rmate"
 zi light aurora/rmate
 
 # Tips for aliases
+zi ice wait"0"
 zi light "djui/alias-tips"
 
 zi ice pick"z.sh"
@@ -170,7 +178,6 @@ zi light zellij-org/zellij
 
 zi ice wait"2"
 zi light "lukechilds/zsh-better-npm-completion"
-zi light lukechilds/zsh-nvm
 
 zi ice as"program" from"gh-r" pick"orf/gping" mv"gping* -> gping"
 zi light orf/gping
@@ -219,14 +226,18 @@ function rgd() { rg --json -C 2 $* | delta }
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Lazy NVM — загрузка только при первом использовании
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+function nvm node npm npx pnpm yarn {
+  unfunction nvm node npm npx pnpm yarn 2>/dev/null
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+  command "$0" "$@"
+}
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
@@ -258,11 +269,7 @@ alias ll="ls -la"
 (( $+commands[duf] )) && alias df=duf
 (( $+commands[dust] )) && alias du=dust
 (( $+commands[hyperfine] )) && alias benchmark=hyperfine
-(( $+commands[gping] )) && alias ping=gping
+# (( $+commands[gping] )) && alias ping=gping
 
 # Local customizations, e.g. theme, plugins, aliases, etc.
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/fduch/.lmstudio/bin"
-# End of LM Studio CLI section
