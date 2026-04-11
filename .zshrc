@@ -151,8 +151,12 @@ zi light "djui/alias-tips"
 zi ice pick"z.sh"
 zi light rupa/z
 
-zi ice pick"async.zsh" src"pure.zsh"
-zi light sindresorhus/pure
+# Starship prompt (replaces pure)
+zi ice as"command" from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" \
+  src"init.zsh"
+zi light starship/starship
 
 if [[ $(uname) == "Linux" ]]; then
   zi ice silent wait as"program" from"gh-r" pick"eza/eza"
@@ -229,10 +233,11 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # Lazy NVM — загрузка только при первом использовании
 export NVM_DIR="$HOME/.nvm"
 function nvm node npm npx pnpm yarn {
+  local cmd="$0"
   unfunction nvm node npm npx pnpm yarn 2>/dev/null
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-  command "$0" "$@"
+  "$cmd" "$@"
 }
 
 # Load a few important annexes, without Turbo
