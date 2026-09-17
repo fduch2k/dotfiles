@@ -230,14 +230,39 @@ function rgd() { rg --json -C 2 $* | delta }
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Lazy NVM — загрузка только при первом использовании
+# NVM: мгновенный PATH к default версии + lazy загрузка самого nvm
 export NVM_DIR="$HOME/.nvm"
-function nvm node npm npx pnpm yarn {
-  local cmd="$0"
-  unfunction nvm node npm npx pnpm yarn 2>/dev/null
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-  "$cmd" "$@"
+
+# Определяем путь к nvm.sh: Homebrew (macOS Intel / Apple Silicon) или стандартный (~/.nvm)
+if [ -s "/usr/local/opt/nvm/nvm.sh" ]; then
+  _NVM_SH="/usr/local/opt/nvm/nvm.sh"
+  _NVM_COMP="/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+elif [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+  _NVM_SH="/opt/homebrew/opt/nvm/nvm.sh"
+  _NVM_COMP="/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+else
+  _NVM_SH="$NVM_DIR/nvm.sh"
+  _NVM_COMP="$NVM_DIR/bash_completion"
+fi
+
+# Резолвим default → конкретная версия и добавляем в PATH (~0ms)
+if [[ -f "$NVM_DIR/alias/default" ]]; then
+  local _nvm_ver=$(cat "$NVM_DIR/alias/default")
+  # Разрешаем alias-цепочку: lts/* → lts/jod → 22 → v22.x.x
+  while [[ -f "$NVM_DIR/alias/$_nvm_ver" ]]; do
+    _nvm_ver=$(cat "$NVM_DIR/alias/$_nvm_ver")
+  done
+  _nvm_ver="${_nvm_ver#v}"  # strip leading 'v' if present
+  local _nvm_resolved=$(ls -d "$NVM_DIR/versions/node/v${_nvm_ver}"* 2>/dev/null | sort -V | tail -1)
+  [[ -d "$_nvm_resolved/bin" ]] && export PATH="$_nvm_resolved/bin:$PATH"
+fi
+
+# Полная загрузка nvm — только при вызове `nvm` напрямую
+function nvm {
+  unfunction nvm 2>/dev/null
+  [ -s "$_NVM_SH" ] && \. "$_NVM_SH"
+  [ -s "$_NVM_COMP" ] && \. "$_NVM_COMP"
+  nvm "$@"
 }
 
 # Load a few important annexes, without Turbo
